@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <img src="#">
+
+
+  <button id='new-image-btn'> New image </button>
+
+  <input type="text">
+  <button id='search'> Search</button>
+  <script>
+
+    function fetchCatImg(arg = 'cats'){
+          const img = document.querySelector('img');
+          fetch(`https://api.giphy.com/v1/gifs/translate?api_key=ID2nwvZ1B6Jv78buSF3T6i3au3ClXGe0&s=${arg}`, {mode: 'cors'})
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(response) {
+        
+          img.src = response.data.images.original.url;
+            })
+        .catch(function(error){
+
+          console.log('Fetch error')
+        }) 
+        }
+        
+
+      
+
+      fetchCatImg()
+      let btn = document.getElementById('new-image-btn')
+      btn.addEventListener('click', function(){
+          fetchCatImg()
+
+
+      })
+
+      let search = document.getElementById('search')
+      let input = document.querySelector('input')
+      search.addEventListener('click', function(){
+        console.log(input.value)
+        fetchCatImg(input.value)
+      })
+  </script>
+</body>
+</html>
