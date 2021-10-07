@@ -14,12 +14,21 @@
   <button id='search'> Search</button>
   <script>
    const img = document.querySelector('img');
+    let newImageBtn = document.getElementById('new-image-btn')
 
    async function fetchCatImg(arg = 'cats'){
-
+        newImageBtn.innerHTML = 'Fetching...'
+        
         let response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=ID2nwvZ1B6Jv78buSF3T6i3au3ClXGe0&s=${arg}`, {mode: 'cors'})
         let imageData = await response.json()
+
+
         img.src = imageData.data.images.original.url;
+
+        if (imageData) {
+
+        newImageBtn.innerHTML = 'New image'
+        }
         }
         
 
@@ -27,11 +36,12 @@
 
       fetchCatImg()
       let btn = document.getElementById('new-image-btn')
-      btn.addEventListener('click', function(){
-          fetchCatImg()
+        btn.addEventListener('click', function(){
+
+            fetchCatImg()
 
 
-      })
+        })
 
       let search = document.getElementById('search')
       let input = document.querySelector('input')
