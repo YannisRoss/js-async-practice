@@ -10,13 +10,16 @@
 
   <button id='new-image-btn'> New image </button>
 
-  <input type="text">
-  <button id='search'> Search</button>
+  <input type="text" placeholder='cats'>
   <script>
    const img = document.querySelector('img');
     let newImageBtn = document.getElementById('new-image-btn')
+    let input = document.querySelector('input')
+
+
 
    async function fetchCatImg(arg = 'cats'){
+     console.log(arg)
         newImageBtn.innerHTML = 'Fetching...'
         
         let response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=ID2nwvZ1B6Jv78buSF3T6i3au3ClXGe0&s=${arg}`, {mode: 'cors'})
@@ -35,20 +38,19 @@
       
 
       fetchCatImg()
+
       let btn = document.getElementById('new-image-btn')
         btn.addEventListener('click', function(){
+            if (input.value) {
+              console.log('input found')
+              fetchCatImg(input.value)
 
-            fetchCatImg()
+            }
+            else {fetchCatImg()}
 
 
         })
 
-      let search = document.getElementById('search')
-      let input = document.querySelector('input')
-      search.addEventListener('click', function(){
-        console.log(input.value)
-        fetchCatImg(input.value)
-      })
   </script>
 </body>
 </html>
