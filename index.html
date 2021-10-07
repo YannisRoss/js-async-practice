@@ -19,7 +19,6 @@
 
 
    async function fetchCatImg(arg = 'cats'){
-     console.log(arg)
         newImageBtn.innerHTML = 'Fetching...'
         
         let response = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=ID2nwvZ1B6Jv78buSF3T6i3au3ClXGe0&s=${arg}`, {mode: 'cors'})
@@ -42,7 +41,6 @@
       let btn = document.getElementById('new-image-btn')
         btn.addEventListener('click', function(){
             if (input.value) {
-              console.log('input found')
               fetchCatImg(input.value)
 
             }
